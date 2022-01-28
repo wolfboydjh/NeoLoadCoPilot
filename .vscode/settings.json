@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/Neotys-Labs/neoload-cli/1.1.4/resources/as-code.latest.schema.json": "file:///c%3A/CoPilotWork/PerformanceCodeGenerateCoPilot/NeoLoadYaml.yml"
+    }
+}
