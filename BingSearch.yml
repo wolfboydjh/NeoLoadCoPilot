@@ -1,0 +1,48 @@
+name: BingSearch
+
+user_paths:
+  - name: "BingSearch"
+    actions:
+      steps:
+        - transaction:
+            name: "Launch Bing"
+            description: "BingSearch"
+            steps:
+              - request:
+                  url: "www.bing.com"
+                  sla_profile: "LaunchBing"
+        - transaction:
+            name: "Search"
+            description: "BingSearch"
+            steps:
+              - request:
+                  url: "www.bing.com/search"
+                  headers:
+                    - "q"
+                    - "test 1"
+                  sla_profile: "SerachResults"
+
+sla_profiles:
+  - name: "LaunchBing"
+    sla_profile_type: "SLA_PROFILE_TYPE_REQUEST_PER_SECOND"
+    sla_profile_value: "1"
+  - name: "SerachResults"
+    sla_profile_type: "SLA_PROFILE_TYPE_REQUEST_PER_SECOND"
+    sla_profile_value: "1"
+
+populations:
+  - name: "BingSearchPop"
+    description: "BingSearch"
+    user_paths:
+      - name: "BingSearch"
+    browser_profile: "Chrome"
+
+scenarios:
+  - name: "BingSearchScenario"
+    description: "BingSearch"
+    populations:
+       - name: "BingSearchPop"
+         rampup_load:
+           min_users: 1
+           increment_users: 1
+           increment_every: 30s
